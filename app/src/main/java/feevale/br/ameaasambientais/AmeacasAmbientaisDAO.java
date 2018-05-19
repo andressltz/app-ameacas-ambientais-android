@@ -6,8 +6,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AmeacasAmbientaisDAO {
@@ -28,6 +30,8 @@ public class AmeacasAmbientaisDAO {
 
     private static final String COL_AMEACA = "Ameaca";
 
+    private static final String COL_DTATUALIZACAO = "DtAtualizacao";
+
     private Context context;
 
     private SQLiteDatabase db;
@@ -39,7 +43,8 @@ public class AmeacasAmbientaisDAO {
             COL_BAIRRO + " text not null," +
             COL_ENDERECO + " text not null," +
             COL_IMPACTO + " text not null," +
-            COL_AMEACA + " text not null" +
+            COL_AMEACA + " text not null," +
+            COL_DTATUALIZACAO + " date not null" +
         ")";
 
     public AmeacasAmbientaisDAO(Context context) {
@@ -54,6 +59,7 @@ public class AmeacasAmbientaisDAO {
         values.put(COL_ENDERECO, ameacaAmbiental.getEndereco());
         values.put(COL_IMPACTO, ameacaAmbiental.getImpacto());
         values.put(COL_AMEACA, ameacaAmbiental.getAmeaca());
+        values.put(COL_DTATUALIZACAO, new Date().toString());
         db.insert(TAB_AMEACAS_AMBIENTAIS, "", values);
     }
 
@@ -63,6 +69,7 @@ public class AmeacasAmbientaisDAO {
         values.put(COL_ENDERECO, ameacaAmbiental.getEndereco());
         values.put(COL_IMPACTO, ameacaAmbiental.getImpacto());
         values.put(COL_AMEACA, ameacaAmbiental.getAmeaca());
+        values.put(COL_DTATUALIZACAO, new Date().toString());
 
         String[] whereArgs = new String[] { ameacaAmbiental.getId().toString() };
 
@@ -74,24 +81,37 @@ public class AmeacasAmbientaisDAO {
         return db.delete(TAB_AMEACAS_AMBIENTAIS, COL_ID_AMEACA_AMBIENTAL + "=" + ameacaAmbientalId, null);
     }
 
-    public List<AmeacaAmbiental> findAll(AmeacaAmbiental ameacaAmbiental) {
-        List<AmeacaAmbiental> listAmeacas = new ArrayList<>();
-
-        String[] columns = { COL_ID_AMEACA_AMBIENTAL, COL_BAIRRO, COL_ENDERECO, COL_AMEACA, COL_IMPACTO };
+    public List<AmeacaAmbiental> findAll() {
+        String[] columns = { COL_ID_AMEACA_AMBIENTAL, COL_BAIRRO, COL_ENDERECO, COL_AMEACA, COL_IMPACTO, COL_DTATUALIZACAO };
+        // FIXME: fix the getList because de cursor are equals in both finds
 
         Cursor cursor = db.query(TAB_AMEACAS_AMBIENTAIS, columns, null, null, null, null, COL_ID_AMEACA_AMBIENTAL);
+        return getList(cursor);
+    }
+
+    public List<AmeacaAmbiental> findLast() {
+        String[] columns = { COL_ID_AMEACA_AMBIENTAL, COL_BAIRRO, COL_ENDERECO, COL_AMEACA, COL_IMPACTO, COL_DTATUALIZACAO };
+
+        Cursor cursor = db.query(TAB_AMEACAS_AMBIENTAIS, columns, null, null, null, null, COL_DTATUALIZACAO);
+        return getList(cursor);
+    }
+
+    private List<AmeacaAmbiental> getList(Cursor cursor) {
         if (cursor.getCount() == 0) {
-            return listAmeacas;
+            return new ArrayList<>();
         }
+
+        List<AmeacaAmbiental> listAmeacas = new ArrayList<>();
 
         AmeacaAmbiental ameaca = new AmeacaAmbiental();
         cursor.moveToFirst();
         do {
             ameaca.setId(cursor.getInt(cursor.getColumnIndex(COL_ID_AMEACA_AMBIENTAL)));
-            ameaca.setImpacto(cursor.getInt(cursor.getColumnIndex(COL_IMPACTO)));
+            ameaca.setImpacto(cursor.getString(cursor.getColumnIndex(COL_IMPACTO)));
             ameaca.setBairro(cursor.getString(cursor.getColumnIndex(COL_BAIRRO)));
             ameaca.setEndereco(cursor.getString(cursor.getColumnIndex(COL_ENDERECO)));
             ameaca.setAmeaca(cursor.getString(cursor.getColumnIndex(COL_AMEACA)));
+//            ameaca.setDtAtualizacao(new Date(cursor.getString(cursor.getColumnIndex(COL_DTATUALIZACAO))));
             listAmeacas.add(ameaca);
         } while (cursor.moveToNext());
 
@@ -106,6 +126,7 @@ public class AmeacasAmbientaisDAO {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            Log.d("DATABASE", "criou a tabela: " + SQL_CREATE_TABLE);
             db.execSQL(SQL_CREATE_TABLE);
         }
 

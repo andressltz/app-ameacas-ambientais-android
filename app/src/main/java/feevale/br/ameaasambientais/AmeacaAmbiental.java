@@ -1,5 +1,7 @@
 package feevale.br.ameaasambientais;
 
+import java.util.Date;
+
 public class AmeacaAmbiental {
 
     private Integer id;
@@ -10,7 +12,9 @@ public class AmeacaAmbiental {
 
     private String bairro;
 
-    private int impacto;
+    private String impacto; // TODO change front eand back to combo with a Integer, and not a String. In database too.
+
+    private Date dtAtualizacao;
 
     public Integer getId() {
         return id;
@@ -44,11 +48,19 @@ public class AmeacaAmbiental {
         this.bairro = bairro;
     }
 
-    public int getImpacto() {
+    public String getImpacto() {
         return impacto;
     }
 
-    public void setImpacto(int impacto) {
+    public void setImpacto(String impacto) {
         this.impacto = impacto;
+    }
+
+    public Date getDtAtualizacao() {
+        return dtAtualizacao;
+    }
+
+    public void setDtAtualizacao(Date dtAtualizacao) {
+        this.dtAtualizacao = dtAtualizacao;
     }
 }

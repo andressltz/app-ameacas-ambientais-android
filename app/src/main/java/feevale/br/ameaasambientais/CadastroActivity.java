@@ -38,7 +38,7 @@ public class CadastroActivity extends Activity {
             ameaca.setAmeaca(txtDescription.getText().toString());
             ameaca.setBairro(txtDistrict.getText().toString());
             ameaca.setEndereco(txtAddress.getText().toString());
-            ameaca.setImpacto(Integer.valueOf(txtImpact.getText().toString()));
+            ameaca.setImpacto(txtImpact.getText().toString());
 
             dao.save(ameaca);
 
@@ -46,14 +46,12 @@ public class CadastroActivity extends Activity {
             txtDistrict.setText(null);
             txtImpact.setText(null);
             txtDescription.setText(null);
-
-            // TODO: atualizar tela
         } else {
             AmeacaAmbiental ameaca = new AmeacaAmbiental();
             ameaca.setAmeaca(txtDescription.getText().toString());
             ameaca.setBairro(txtDistrict.getText().toString());
             ameaca.setEndereco(txtAddress.getText().toString());
-            ameaca.setImpacto(Integer.valueOf(txtImpact.getText().toString()));
+            ameaca.setImpacto(txtImpact.getText().toString());
 
             dao.update(ameaca);
 
@@ -61,8 +59,6 @@ public class CadastroActivity extends Activity {
             txtDistrict.setText(null);
             txtImpact.setText(null);
             txtDescription.setText(null);
-
-            // TODO: atualizar tela
         }
         // FIXME: refactor - jogar lógica do if pra dentro do adapter.save()
     }
