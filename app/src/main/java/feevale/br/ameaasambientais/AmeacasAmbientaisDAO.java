@@ -73,8 +73,8 @@ public class AmeacasAmbientaisDAO {
 
         String[] whereArgs = new String[] { ameacaAmbiental.getId().toString() };
 
-        db.update(TAB_AMEACAS_AMBIENTAIS, values, "id = ?", whereArgs);
-//        db.update(TAB_AMEACAS_AMBIENTAIS, values, COL_ID_AMEACA_AMBIENTAL + "=" + ameacaAmbiental.getId(), whereArgs);
+        db.update(TAB_AMEACAS_AMBIENTAIS, values, COL_ID_AMEACA_AMBIENTAL + "=?", whereArgs);
+//        db.update(TAB_AMEACAS_AMBIENTAIS, values, COL_ID_AMEACA_AMBIENTAL + "=" + ameacaAmbiental.getId(), null);
     }
 
     public Integer delete(int ameacaAmbientalId) {
@@ -116,6 +116,18 @@ public class AmeacasAmbientaisDAO {
         } while (cursor.moveToNext());
 
         return listAmeacas;
+    }
+
+    public AmeacaAmbiental load(Integer idAmeacaAmbiental) {
+        String[] columns = { COL_ID_AMEACA_AMBIENTAL, COL_BAIRRO, COL_ENDERECO, COL_AMEACA, COL_IMPACTO, COL_DTATUALIZACAO };
+        // FIXME: fix the getList because de cursor are equals in both finds
+
+        Cursor cursor = db.query(TAB_AMEACAS_AMBIENTAIS, columns, COL_ID_AMEACA_AMBIENTAL + "=" + idAmeacaAmbiental, null, null, null, null);
+        List<AmeacaAmbiental> listResult = getList(cursor);
+        if (listResult.isEmpty()) {
+            return null;
+        }
+        return listResult.get(0);
     }
 
     private static class DBHelper extends SQLiteOpenHelper {

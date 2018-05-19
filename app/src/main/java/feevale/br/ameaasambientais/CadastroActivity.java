@@ -1,6 +1,7 @@
 package feevale.br.ameaasambientais;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -30,6 +31,19 @@ public class CadastroActivity extends Activity {
         txtDescription = (EditText) findViewById(R.id.txtDescription);
 
         dao = new AmeacasAmbientaisDAO(getBaseContext());
+
+        Intent intent = getIntent();
+        idAmeacaAmbiental = intent.getIntExtra("ID", -1);
+        if (idAmeacaAmbiental != null && idAmeacaAmbiental != -1) {
+            AmeacaAmbiental ameaca = dao.load(idAmeacaAmbiental);
+//            if (ameaca == null) {
+                txtDescription.setText(ameaca.getAmeaca());
+                txtImpact.setText(ameaca.getImpacto());
+                txtAddress.setText(ameaca.getEndereco());
+                txtDistrict.setText(ameaca.getBairro());
+//            }
+        }
+
     }
 
     public void salvar(View view) {
@@ -52,6 +66,7 @@ public class CadastroActivity extends Activity {
             ameaca.setBairro(txtDistrict.getText().toString());
             ameaca.setEndereco(txtAddress.getText().toString());
             ameaca.setImpacto(txtImpact.getText().toString());
+            ameaca.setId(idAmeacaAmbiental);
 
             dao.update(ameaca);
 
@@ -59,8 +74,13 @@ public class CadastroActivity extends Activity {
             txtDistrict.setText(null);
             txtImpact.setText(null);
             txtDescription.setText(null);
+
+            setResult(RESULT_OK);
+            finish();
         }
         // FIXME: refactor - jogar lógica do if pra dentro do adapter.save()
     }
+
+
 
 }

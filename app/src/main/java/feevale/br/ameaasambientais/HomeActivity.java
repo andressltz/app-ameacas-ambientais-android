@@ -7,10 +7,6 @@ import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int VER_TODOS = 1000;
-
-    private static final int CADASTRAR = 2000;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,12 +16,12 @@ public class HomeActivity extends AppCompatActivity {
     public void verTodos(View view) {
         Intent intentList = new Intent(getBaseContext(), ListaActivity.class);
 
-        startActivityForResult(intentList, VER_TODOS);
+        startActivityForResult(intentList, RequestCode.VER_TODOS.code);
     }
 
     public void cadastrar(View view) {
         Intent intentCadastro = new Intent(getBaseContext(), CadastroActivity.class);
 
-        startActivityForResult(intentCadastro, CADASTRAR);
+        startActivityForResult(intentCadastro, RequestCode.CADASTRAR.code);
     }
 }
