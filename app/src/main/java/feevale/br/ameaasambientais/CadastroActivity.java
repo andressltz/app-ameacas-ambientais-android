@@ -128,7 +128,7 @@ public class CadastroActivity extends Activity {
         return listImpact;
     }
 
-    public int getPositionImpact(Integer impact) {
+    private int getPositionImpact(Integer impact) {
         List<Integer> list = getListImpact();
         for (int i = 0; i < list.size(); i ++) {
             if (list.get(i) == impact) {
@@ -138,4 +138,13 @@ public class CadastroActivity extends Activity {
         return 0;
     }
 
+//    // On Change
+//    preferencesEditor.putInt("BG_COLOR", drawable.getColor());
+//    preferencesEditor.commit();
+//
+//    // OnCreate
+//    int color = preferences.getInt("BG_COLOR", -1);
+//    if (color != -1) {
+//        getWindow().getDecorView().setBackgroundColor(color);
+//    }
 }
