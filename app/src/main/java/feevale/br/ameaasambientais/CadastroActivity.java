@@ -26,7 +26,7 @@ public class CadastroActivity extends Activity {
         setContentView(R.layout.activity_cadastro);
 
         txtDistrict = (EditText) findViewById(R.id.txtDistrict);
-        txtAddress = (EditText) findViewById(R.id.txtAddress);
+        txtAddress = (EditText) findViewById(R.id.txtListAddress);
         txtImpact = (EditText) findViewById(R.id.txtImpact);
         txtDescription = (EditText) findViewById(R.id.txtDescription);
 
@@ -36,18 +36,18 @@ public class CadastroActivity extends Activity {
         idAmeacaAmbiental = intent.getIntExtra("ID", -1);
         if (idAmeacaAmbiental != null && idAmeacaAmbiental != -1) {
             AmeacaAmbiental ameaca = dao.load(idAmeacaAmbiental);
-//            if (ameaca == null) {
+            if (ameaca != null) {
                 txtDescription.setText(ameaca.getAmeaca());
                 txtImpact.setText(ameaca.getImpacto());
                 txtAddress.setText(ameaca.getEndereco());
                 txtDistrict.setText(ameaca.getBairro());
-//            }
+            }
         }
 
     }
 
     public void salvar(View view) {
-        if (idAmeacaAmbiental == null) {
+        if (idAmeacaAmbiental == null || idAmeacaAmbiental == -1) {
             AmeacaAmbiental ameaca = new AmeacaAmbiental();
             ameaca.setAmeaca(txtDescription.getText().toString());
             ameaca.setBairro(txtDistrict.getText().toString());

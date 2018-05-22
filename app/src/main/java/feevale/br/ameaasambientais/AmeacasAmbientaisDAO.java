@@ -60,6 +60,7 @@ public class AmeacasAmbientaisDAO {
         values.put(COL_IMPACTO, ameacaAmbiental.getImpacto());
         values.put(COL_AMEACA, ameacaAmbiental.getAmeaca());
         values.put(COL_DTATUALIZACAO, new Date().toString());
+        Log.d("SALVANDO", values.toString());
         db.insert(TAB_AMEACAS_AMBIENTAIS, "", values);
     }
 
@@ -72,7 +73,7 @@ public class AmeacasAmbientaisDAO {
         values.put(COL_DTATUALIZACAO, new Date().toString());
 
         String[] whereArgs = new String[] { ameacaAmbiental.getId().toString() };
-
+        Log.d("ATUALIZANDO", values.toString());
         db.update(TAB_AMEACAS_AMBIENTAIS, values, COL_ID_AMEACA_AMBIENTAL + "=?", whereArgs);
 //        db.update(TAB_AMEACAS_AMBIENTAIS, values, COL_ID_AMEACA_AMBIENTAL + "=" + ameacaAmbiental.getId(), null);
     }
@@ -103,9 +104,9 @@ public class AmeacasAmbientaisDAO {
 
         List<AmeacaAmbiental> listAmeacas = new ArrayList<>();
 
-        AmeacaAmbiental ameaca = new AmeacaAmbiental();
         cursor.moveToFirst();
         do {
+            AmeacaAmbiental ameaca = new AmeacaAmbiental();
             ameaca.setId(cursor.getInt(cursor.getColumnIndex(COL_ID_AMEACA_AMBIENTAL)));
             ameaca.setImpacto(cursor.getString(cursor.getColumnIndex(COL_IMPACTO)));
             ameaca.setBairro(cursor.getString(cursor.getColumnIndex(COL_BAIRRO)));

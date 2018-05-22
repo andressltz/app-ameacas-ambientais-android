@@ -6,12 +6,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/lblDescription"
+        android:id="@+id/txtListDistrict"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Description"
+        android:text="District"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,27 +19,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtAddress"
+        android:id="@+id/txtListAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Address"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.706"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/txtListDistrict" />
 
     <TextView
-        android:id="@+id/lblImpact"
-        android:layout_width="368dp"
+        android:id="@+id/txtListImpact"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="168dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Impact"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/txtListAddress" />
 </android.support.constraint.ConstraintLayout>

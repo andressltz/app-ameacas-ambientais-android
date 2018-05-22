@@ -7,6 +7,10 @@ import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
 
+    // TODO create the recent register in home activity
+
+    // TODO create the landscape layout without lost the information
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

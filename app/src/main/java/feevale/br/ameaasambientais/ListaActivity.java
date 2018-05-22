@@ -31,6 +31,7 @@ public class ListaActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getBaseContext(), CadastroActivity.class);
                 intent.putExtra("ID", (int) id);
+                adapter.notifyDataSetChanged();
                 startActivityForResult(intent, RequestCode.ATUALIZAR.code);
             }
         });
