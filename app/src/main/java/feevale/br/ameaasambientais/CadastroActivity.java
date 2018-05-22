@@ -106,7 +106,6 @@ public class CadastroActivity extends Activity {
             setResult(RESULT_OK);
             finish();
         }
-        // FIXME: refactor - jogar lógica do if pra dentro do adapter.save()
     }
 
     private Integer getDefaultValueImpact() {

@@ -7,8 +7,6 @@ import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
 
-    // TODO create the recent register in home activity
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

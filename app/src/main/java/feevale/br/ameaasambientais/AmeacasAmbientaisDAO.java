@@ -81,7 +81,6 @@ public class AmeacasAmbientaisDAO {
 
     public List<AmeacaAmbiental> findAll() {
         String[] columns = { COL_ID_AMEACA_AMBIENTAL, COL_BAIRRO, COL_ENDERECO, COL_AMEACA, COL_IMPACTO, COL_DTATUALIZACAO };
-        // FIXME: fix the getList because de cursor are equals in both finds
 
         Cursor cursor = db.query(TAB_AMEACAS_AMBIENTAIS, columns, null, null, null, null, COL_ID_AMEACA_AMBIENTAL);
         return getList(cursor);
@@ -109,7 +108,6 @@ public class AmeacasAmbientaisDAO {
             ameaca.setBairro(cursor.getString(cursor.getColumnIndex(COL_BAIRRO)));
             ameaca.setEndereco(cursor.getString(cursor.getColumnIndex(COL_ENDERECO)));
             ameaca.setAmeaca(cursor.getString(cursor.getColumnIndex(COL_AMEACA)));
-//            ameaca.setDtAtualizacao(new Date(cursor.getString(cursor.getColumnIndex(COL_DTATUALIZACAO))));
             listAmeacas.add(ameaca);
         } while (cursor.moveToNext());
 
@@ -118,7 +116,6 @@ public class AmeacasAmbientaisDAO {
 
     public AmeacaAmbiental load(Integer idAmeacaAmbiental) {
         String[] columns = { COL_ID_AMEACA_AMBIENTAL, COL_BAIRRO, COL_ENDERECO, COL_AMEACA, COL_IMPACTO, COL_DTATUALIZACAO };
-        // FIXME: fix the getList because de cursor are equals in both finds
 
         Cursor cursor = db.query(TAB_AMEACAS_AMBIENTAIS, columns, COL_ID_AMEACA_AMBIENTAL + "=" + idAmeacaAmbiental, null, null, null, null);
         List<AmeacaAmbiental> listResult = getList(cursor);
