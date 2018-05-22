@@ -50,15 +50,13 @@ public class AmeacaAmbientalAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ameacaAmbientalList = dao.findAll();
-        Log.d("QUANTIDADE", String.valueOf(ameacaAmbientalList.size()));
         View row = inflater.inflate(R.layout.list_register_item, parent, false);
 
-        Log.d("Registro ID", String.valueOf(position) + ": " + ameacaAmbientalList.get(position).getId().toString());
         TextView txtEndereco = (TextView) row.findViewById(R.id.txtListAddress);
         TextView txtImpacto= (TextView) row.findViewById(R.id.txtListImpact);
         TextView txtBairro = (TextView) row.findViewById(R.id.txtListDistrict);
         txtEndereco.setText(ameacaAmbientalList.get(position).getEndereco());
-        txtImpacto.setText(ameacaAmbientalList.get(position).getImpacto());
+        txtImpacto.setText(ameacaAmbientalList.get(position).getImpacto().toString());
         txtBairro.setText(ameacaAmbientalList.get(position).getBairro());
 
         return row;

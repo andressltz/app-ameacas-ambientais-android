@@ -1,6 +1,5 @@
 package feevale.br.ameaasambientais;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -42,7 +41,7 @@ public class AmeacasAmbientaisDAO {
             COL_ID_AMEACA_AMBIENTAL + " integer primary key autoincrement," +
             COL_BAIRRO + " text not null," +
             COL_ENDERECO + " text not null," +
-            COL_IMPACTO + " text not null," +
+            COL_IMPACTO + " number not null," +
             COL_AMEACA + " text not null," +
             COL_DTATUALIZACAO + " date not null" +
         ")";
@@ -60,7 +59,6 @@ public class AmeacasAmbientaisDAO {
         values.put(COL_IMPACTO, ameacaAmbiental.getImpacto());
         values.put(COL_AMEACA, ameacaAmbiental.getAmeaca());
         values.put(COL_DTATUALIZACAO, new Date().toString());
-        Log.d("SALVANDO", values.toString());
         db.insert(TAB_AMEACAS_AMBIENTAIS, "", values);
     }
 
@@ -73,7 +71,6 @@ public class AmeacasAmbientaisDAO {
         values.put(COL_DTATUALIZACAO, new Date().toString());
 
         String[] whereArgs = new String[] { ameacaAmbiental.getId().toString() };
-        Log.d("ATUALIZANDO", values.toString());
         db.update(TAB_AMEACAS_AMBIENTAIS, values, COL_ID_AMEACA_AMBIENTAL + "=?", whereArgs);
 //        db.update(TAB_AMEACAS_AMBIENTAIS, values, COL_ID_AMEACA_AMBIENTAL + "=" + ameacaAmbiental.getId(), null);
     }
@@ -108,7 +105,7 @@ public class AmeacasAmbientaisDAO {
         do {
             AmeacaAmbiental ameaca = new AmeacaAmbiental();
             ameaca.setId(cursor.getInt(cursor.getColumnIndex(COL_ID_AMEACA_AMBIENTAL)));
-            ameaca.setImpacto(cursor.getString(cursor.getColumnIndex(COL_IMPACTO)));
+            ameaca.setImpacto(cursor.getInt(cursor.getColumnIndex(COL_IMPACTO)));
             ameaca.setBairro(cursor.getString(cursor.getColumnIndex(COL_BAIRRO)));
             ameaca.setEndereco(cursor.getString(cursor.getColumnIndex(COL_ENDERECO)));
             ameaca.setAmeaca(cursor.getString(cursor.getColumnIndex(COL_AMEACA)));

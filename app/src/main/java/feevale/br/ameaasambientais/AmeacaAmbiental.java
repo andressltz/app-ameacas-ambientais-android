@@ -12,7 +12,7 @@ public class AmeacaAmbiental {
 
     private String bairro;
 
-    private String impacto; // TODO change front eand back to combo with a Integer, and not a String. In database too.
+    private Integer impacto;
 
     private Date dtAtualizacao;
 
@@ -48,11 +48,11 @@ public class AmeacaAmbiental {
         this.bairro = bairro;
     }
 
-    public String getImpacto() {
+    public Integer getImpacto() {
         return impacto;
     }
 
-    public void setImpacto(String impacto) {
+    public void setImpacto(Integer impacto) {
         this.impacto = impacto;
     }
 
