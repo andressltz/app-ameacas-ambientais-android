@@ -137,13 +137,4 @@ public class CadastroActivity extends Activity {
         return 0;
     }
 
-//    // On Change
-//    preferencesEditor.putInt("BG_COLOR", drawable.getColor());
-//    preferencesEditor.commit();
-//
-//    // OnCreate
-//    int color = preferences.getInt("BG_COLOR", -1);
-//    if (color != -1) {
-//        getWindow().getDecorView().setBackgroundColor(color);
-//    }
 }
