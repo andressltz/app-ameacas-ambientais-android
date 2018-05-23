@@ -56,7 +56,7 @@ public class AmeacaAmbientalAdapter extends BaseAdapter {
         TextView txtImpacto= (TextView) row.findViewById(R.id.txtListImpact);
         TextView txtBairro = (TextView) row.findViewById(R.id.txtListDistrict);
         txtEndereco.setText(ameacaAmbientalList.get(position).getEndereco());
-        txtImpacto.setText(ameacaAmbientalList.get(position).getImpacto().toString());
+        txtImpacto.setText("Impacto nível " + ameacaAmbientalList.get(position).getImpacto().toString());
         txtBairro.setText(ameacaAmbientalList.get(position).getBairro());
 
         return row;

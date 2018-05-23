@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ public class CadastroActivity extends Activity {
 
     Integer idAmeacaAmbiental;
 
+    TextView lblNewRegister;
+
     AmeacasAmbientaisDAO dao;
 
     @Override
@@ -38,6 +41,8 @@ public class CadastroActivity extends Activity {
         impactSpinner = (Spinner) findViewById(R.id.txtImpact);
         txtDescription = (EditText) findViewById(R.id.txtDescription);
         txtImpact = getDefaultValueImpact();
+        lblNewRegister = (TextView) findViewById(R.id.lblNewRegister);
+        lblNewRegister.setText("Cadastrar ocorrência");
 
         dao = new AmeacasAmbientaisDAO(getBaseContext());
 
@@ -55,6 +60,7 @@ public class CadastroActivity extends Activity {
                 impactSpinner.setSelection(getPositionImpact(txtImpact),true);
                 txtAddress.setText(ameaca.getEndereco());
                 txtDistrict.setText(ameaca.getBairro());
+                lblNewRegister.setText("Atualizar ocorrência");
             }
         }
 
